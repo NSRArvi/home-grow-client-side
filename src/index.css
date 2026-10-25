@@ -1,8 +1,159 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
-* {
-  font-family: "Lato", sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: "Plus Jakarta Sans", "Hind Siliguri", sans-serif;
+    line-height: 1.5;
+    color: #1e293b;
+    background-color: #f8faf7;
+  }
+
+  body {
+    line-height: 1.5;
+    text-align: start;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", "Hind Siliguri", sans-serif;
+    text-wrap: balance;
+  }
+
+  p,
+  blockquote,
+  li {
+    text-wrap: pretty;
+  }
+}
+
+/* Defer rendering heavy below-the-fold sections per modern-web-guidance */
+.heavy-section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 500px;
+}
+
+/* Modern validation states after user interaction (:user-invalid / :user-valid) */
+.modern-field input:user-invalid,
+.modern-field textarea:user-invalid,
+.modern-field input.user-invalid-fallback,
+.modern-field textarea.user-invalid-fallback {
+  border-color: #d93025;
+  background-color: #fce8e6;
+}
+
+.modern-field input:user-valid,
+.modern-field textarea:user-valid,
+.modern-field input.user-valid-fallback,
+.modern-field textarea.user-valid-fallback {
+  border-color: #188038;
+}
+
+.modern-field .error-msg {
+  display: none;
+}
+
+.modern-field input:user-invalid + .error-msg,
+.modern-field textarea:user-invalid + .error-msg,
+.modern-field input.user-invalid-fallback + .error-msg,
+.modern-field textarea.user-invalid-fallback + .error-msg {
+  display: flex;
+}
+
+/* Responsive table with container queries & sticky headers */
+.responsive-table-wrapper {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(640px, 80vh);
+  container-type: inline-size;
+}
+
+.responsive-table-wrapper table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.responsive-table-wrapper thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.responsive-table-wrapper tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+}
+
+@container (width < 560px) {
+  .responsive-table-wrapper table,
+  .responsive-table-wrapper thead,
+  .responsive-table-wrapper tbody,
+  .responsive-table-wrapper tr,
+  .responsive-table-wrapper th,
+  .responsive-table-wrapper td {
+    display: block;
+  }
+
+  .responsive-table-wrapper thead {
+    display: none;
+  }
+
+  .responsive-table-wrapper tr {
+    margin-block-end: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .responsive-table-wrapper tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background: #f1f5f9;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+  }
+
+  .responsive-table-wrapper table {
+    --label-2: "Nutrients";
+    --label-3: "Dried Leaves";
+    --label-4: "Leaves Powder";
+  }
+
+  .responsive-table-wrapper td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .responsive-table-wrapper td:nth-child(2)::before {
+    content: var(--label-2) ": ";
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .responsive-table-wrapper td:nth-child(3)::before {
+    content: var(--label-3) ": ";
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .responsive-table-wrapper td:nth-child(4)::before {
+    content: var(--label-4) ": ";
+    font-weight: 600;
+    color: #475569;
+  }
 }

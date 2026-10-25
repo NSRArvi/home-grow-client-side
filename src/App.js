@@ -1,18 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Main from "./layouts/Main";
+import AboutUs from "./pages/AboutUs";
 import ComingSoon from "./pages/ComingSoon";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import JuteProducts from "./pages/JuteProducts";
-import ManagementProfile from "./pages/ManagementProfile";
 import NotFound from "./pages/NotFound";
-import Opportunities from "./pages/Opportunities";
-import OurDepartments from "./pages/OurDepartments";
-import OurEFA from "./pages/OurEFA";
-import OurMission from "./pages/OurMission";
-import OurPP from "./pages/OurPP";
 import PhotoGallery from "./pages/PhotoGallery";
+import Process from "./pages/Process";
 import Product from "./pages/Product";
 import SeedsProducts from "./pages/SeedsProducts";
 import VagetablesProd from "./components/VagetablesProd";
@@ -30,71 +26,55 @@ function App() {
           element: <Home></Home>,
         },
         {
+          path: "/about",
+          element: <AboutUs></AboutUs>,
+        },
+        {
+          path: "/process",
+          element: <Process></Process>,
+        },
+        {
           path: "/contact",
-          element:<Contact></Contact>,
-        },
-        {
-          path: "/mission",
-          element:<OurMission></OurMission>,
-        },
-        {
-          path: "/opportunites",
-          element:<Opportunities></Opportunities>,
-        },
-        {
-          path: "/profile",
-          element:<ManagementProfile></ManagementProfile>,
-        },
-        {
-          path: "/ourpp",
-          element:<OurPP></OurPP>,
-        },
-        {
-          path: "/ourefa",
-          element:<OurEFA></OurEFA>,
-        },
-        {
-          path: "/ourdept",
-          element:<OurDepartments></OurDepartments>,
+          element: <Contact></Contact>,
         },
         {
           path: "/photogalary",
-          element:<PhotoGallery></PhotoGallery>,
+          element: <PhotoGallery></PhotoGallery>,
         },
         {
           path: "/product",
-          element:<Product></Product>,
+          element: <Product></Product>,
         },
         {
           path: "/seedsProduct",
-          element:<SeedsProducts></SeedsProducts>,
+          element: <SeedsProducts></SeedsProducts>,
         },
         {
           path: "/foodsProduct",
-          element:<FoodProducts></FoodProducts>,
+          element: <FoodProducts></FoodProducts>,
         },
         {
           path: "/jutesProduct",
-          element:<JuteProducts></JuteProducts>,
+          element: <JuteProducts></JuteProducts>,
         },
         {
           path: "/vagetablesProduct",
-          element:<VagetablesProd></VagetablesProd>,
+          element: <VagetablesProd></VagetablesProd>,
         },
         {
           path: "/moringa",
-          element:<Moringa></Moringa>,
+          element: <Moringa></Moringa>,
         },
       ],
     },
     {
       path: "/comigSoon",
-      element:<ComingSoon/>,
+      element: <ComingSoon />,
     },
     {
-      path:'*',
-      element: <NotFound></NotFound>
-    }
+      path: "*",
+      element: <NotFound></NotFound>,
+    },
   ]);
   return (
     <main>

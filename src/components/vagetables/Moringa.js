@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import img from "../../img/Picture.png";
 import img2 from "../../img/Picture2.png";
 import moringa1 from "../../img/moringa (1).webp";
 import moringa2 from "../../img/moringa (1).jpg";
 import moringa3 from "../../img/moringa (2).jpg";
 import moringa4 from "../../img/moringa (3).jpg";
+import { HiArrowLeft } from "react-icons/hi2";
+import PageMeta from "../../shared/PageMeta";
 
 export default function Moringa() {
   const products = [
@@ -75,6 +79,7 @@ export default function Moringa() {
       ingrediant: "Moringa Seed",
     },
   ];
+
   const nutrients = [
     {
       Nutrients: "Moisture",
@@ -172,237 +177,355 @@ export default function Moringa() {
       LeavesPowder: "0.57mg",
     },
   ];
-  return (
-    <div className="p-10 container mx-auto">
-      <div>
-        <img src={moringa1} alt="" />
-      </div>
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold mt-10 uppercase">
-          <span className="text-[#71B002]">{products?.length} Moringa</span>{" "}
-          Products
-        </h2>
-        {products?.map((p, i) => (
-          <div
-            key={i}
-            className="relative grid gap-4 md:grid-cols-2 shadow-xl rounded-xl mt-5 p-5"
-          >
-            <div className="flex flex-col gap-4">
-              {p.img && (
-                <img
-                  src={p.img}
-                  alt="product_img"
-                  className="rounded-xl h-[150px] w-[150px]"
-                />
-              )}
-              <p>
-                <span className="font-semibold">Name:</span> <br /> {p?.name}
-              </p>
 
-              <p>
-                <span className="font-semibold">Ingrediant:</span> <br />{" "}
-                {p?.ingrediant}
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <p>
-                <span className="font-semibold">Details:</span> <br />{" "}
-                {p?.details}
-              </p>
-              {p?.special && (
-                <p>
-                  <span className="font-semibold">Speciality:</span> <br />{" "}
-                  {p?.special}
-                </p>
-              )}
-              {p?.rule && (
-                <p>
-                  <span className="font-semibold">Rule:</span> <br /> {p?.rule}
-                </p>
-              )}
-              {p?.precaution && (
-                <p>
-                  <span className="font-semibold">Precaution:</span> <br />{" "}
-                  {p?.precaution}
-                </p>
-              )}
-            </div>
-            <p className="absolute -right-5 -top-5 text-3xl font-semibold px-4 py-2 bg-[#71B002] text-white rounded-xl">
-              {i + 1}
-            </p>
-          </div>
-        ))}
+  return (
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <PageMeta
+        title="Moringa Products | Hot Drinks, Leaf Powder & Seed Oil - Home Grow"
+        description="Discover Home Grow's BCSIR-tested Moringa product line including Moringa Hot Drink, Sojina Leaf Powder, Uptan, and Magic Seed Oil with full nutritional analysis."
+      />
+      <Link
+        to="/vagetablesProduct"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-[#71B002] mb-6 transition-colors"
+      >
+        <HiArrowLeft />
+        <span>Back to Vagetables Products</span>
+      </Link>
+
+      {/* Banner Image */}
+      <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200/70 mb-14 bg-white">
+        <img
+          src={moringa1}
+          alt="Moringa Banner"
+          fetchpriority="high"
+          className="w-full max-h-[460px] object-cover"
+        />
       </div>
-      <div className="flex flex-col gap-3 mt-10">
-        <h2 className="text-xl font-semibold text-[#71B002]">
+
+      {/* Products List */}
+      <div className="mb-16">
+        <div className="flex items-center justify-between mb-8">
+          <h2
+            className="font-extrabold text-slate-900 uppercase tracking-tight"
+            style={{ fontSize: "clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem)" }}
+          >
+            <span className="text-[#71B002]">{products?.length} Moringa</span>{" "}
+            Products
+          </h2>
+        </div>
+
+        <div className="grid gap-6">
+          {products?.map((p, i) => (
+            <div
+              key={i}
+              className="relative grid gap-6 md:grid-cols-12 bg-white shadow-sm hover:shadow-lg border border-slate-100 rounded-3xl p-6 sm:p-8 transition-all duration-300"
+            >
+              {/* Number Badge */}
+              <span className="absolute right-6 top-6 text-lg font-extrabold w-11 h-11 flex items-center justify-center bg-[#71B002] text-white rounded-2xl shadow-sm">
+                {i + 1}
+              </span>
+
+              <div className="md:col-span-5 flex flex-col gap-4 pr-12 md:pr-4">
+                {p.img && (
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    loading="lazy"
+                    className="rounded-2xl h-40 w-40 object-cover border border-slate-100 shadow-sm"
+                  />
+                )}
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Name:
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5">
+                    {p?.name}
+                  </h3>
+                </div>
+
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Ingrediant:
+                  </span>
+                  <p className="text-slate-700 font-medium mt-0.5">
+                    {p?.ingrediant}
+                  </p>
+                </div>
+              </div>
+
+              <div className="md:col-span-7 flex flex-col gap-4 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#71B002]">
+                    Details:
+                  </span>
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-1">
+                    {p?.details}
+                  </p>
+                </div>
+                {p?.special && (
+                  <div className="bg-amber-50/80 border border-amber-200/60 rounded-2xl p-3.5">
+                    <span className="text-xs font-bold uppercase tracking-wider text-amber-800">
+                      Speciality:
+                    </span>
+                    <p className="text-amber-900 text-sm mt-0.5">
+                      {p?.special}
+                    </p>
+                  </div>
+                )}
+                {p?.rule && (
+                  <div className="bg-[#71B002]/5 border border-[#71B002]/20 rounded-2xl p-3.5">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#528200]">
+                      Rule:
+                    </span>
+                    <p className="text-slate-700 text-sm mt-0.5">{p?.rule}</p>
+                  </div>
+                )}
+                {p?.precaution && (
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                      Precaution:
+                    </span>
+                    <p className="text-slate-700 text-sm mt-0.5">
+                      {p?.precaution}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Editorial Narrative Sections */}
+      <div className="heavy-section-deferred bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6 mb-16">
+        <h2
+          className="font-extrabold text-[#71B002]"
+          style={{ fontSize: "clamp(1.5rem, 1.2rem + 1.2vw, 2rem)" }}
+        >
           Discover the Essence of Wellness with Home Grow
         </h2>
-        <h5 className="font-semibold bg-[#71B002] p-2 text-white">
-          Unveiling Nature's Bounty: Moringa Powder and Moringa-Based Products
-        </h5>
-        <p>
-          {" "}
-          At Home Grow , our commitment to quality and well-being is evident in
-          every step of our journey – from cultivation to packaging. Immerse
-          yourself in the world of premium Moringa products, crafted with care
-          for your health and happiness.
-        </p>
-        <h5 className="font-semibold bg-[#71B002] p-2 text-white">
-          Meticulous Moringa Leaf Quality
-        </h5>
-        <p>
-          {" "}
-          <span className="font-semibold">Origin and Source:</span> Our Moringa
-          leaves hail from carefully selected geographic regions known for their
-          optimal climate conditions. Local farmers collaborate to cultivate
-          every leaf with respect for the environment.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">
-            Sustainable Cultivation Practices:
-          </span>{" "}
-          Embracing sustainable and organic farming, we prioritize soil health
-          and avoid pesticides. Our approach yields leaves of unparalleled
-          quality while nurturing our ecosystem.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">
-            Leaf Selection with Precision:
-          </span>{" "}
-          Each leaf undergoes rigorous selection, ensuring only the freshest,
-          vibrant, and unblemished ones are chosen. This preserves the essence
-          of Moringa's nutritional value.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">Harvesting at its Peak:</span> Our
-          leaves are meticulously hand-picked to ensure peak freshness and
-          nutritional richness. This hands-on approach maintains the essence of
-          Moringa's benefits.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">
-            Meticulous Cleaning and Washing:
-          </span>{" "}
-          Before processing, our leaves are cleaned and washed meticulously to
-          remove impurities. This ensures the final product is pure and free
-          from unwanted elements.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">Optimized Drying Technique:</span> We
-          use methods specially designed to preserve nutritional content, from
-          sun-drying to proprietary techniques. Our Moringa leaves retain their
-          potency and benefits.
-        </p>
-        <h5 className="font-semibold bg-[#71B002] p-2 text-white">
-          Elevating Moringa Leaf Powder Quality:
-        </h5>
-        <p>
-          {" "}
-          <span className="font-semibold">Processing Perfection:</span> The
-          transformation from leaves to powder is a journey of precision. Leaves
-          are dried to perfection, resulting in finely textured Moringa leaf
-          powder.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">Nutritional Richness:</span> Our
-          Moringa leaf powder boasts an exceptional nutritional profile,
-          abundant in essential vitamins, minerals, antioxidants, and bioactive
-          compounds. Embrace the power of nature's nourishment.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">Nature's Signature:</span> Color,
-          Aroma, and Flavor: Experience the vibrancy of our Moringa leaf powder
-          – from its lively green hue to its fresh aroma and mild flavor. It's a
-          testament to nature's authenticity.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">Nature's Signature:</span> Color,
-          Aroma, and Flavor: Experience the vibrancy of our Moringa leaf powder
-          – from its lively green hue to its fresh aroma and mild flavor. It's a
-          testament to nature's authenticity.
-        </p>
-        <h5 className="font-semibold bg-[#71B002] p-2 text-white">
-          Quality beyond Compromise:
-        </h5>
-        <p>
-          {" "}
-          <span className="font-semibold">
-            Assured Quality and Testing:
-          </span>{" "}
-          Throughout production, our Moringa leaf powder undergoes rigorous
-          quality testing.
-        </p>
-        <p>
-          {" "}
-          <span className="font-semibold">
-            Certifications and Compliance:
-          </span>{" "}
-          Our Moringa leaf powder is tested and certified by BCSIR Laboratories,
-          Dhaka. The process of Good Agricultural Practice (GAP) certification
-          for the entire journey is underway.
-          <br />
-          Elevate your well-being with Home Grow – where quality, purity, and
-          nature's essence converge.
-        </p>
-      </div>
-      <div>
-        <div className="lg:flex gap-5">
-          <div>
-            <h2 className="text-xl font-semibold mt-10">
-              Nutritional Value in every{" "}
-              <span className="text-[#71B002]">100 grams</span> of Moringa Leaf
-              and Leaf Powder:
-            </h2>
-            <div className="overflow-x-auto">
-              <table className="table table-zebra w-full mt-10">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Nutrients</th>
-                    <th>Dried Leaves</th>
-                    <th>Leaves Powder</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {nutrients.map((n, i) => (
-                    <tr>
-                      <th>{i + 1}</th>
-                      <td>{n.Nutrients}</td>
-                      <td>{n.DriedLeaves}</td>
-                      <td>{n.LeavesPowder}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-10 text-center">
-              Source: Moringa oleifera: A review on nutritive importance and its
-              medicinal application: sciencedirect.com
+
+        <div className="space-y-4">
+          <h5 className="font-bold bg-[#0D1F12] text-[#8ED116] px-4 py-2.5 rounded-xl text-base sm:text-lg">
+            Unveiling Nature's Bounty: Moringa Powder and Moringa-Based Products
+          </h5>
+          <p className="text-slate-600 leading-relaxed max-w-[78ch]">
+            At Home Grow , our commitment to quality and well-being is evident
+            in every step of our journey – from cultivation to packaging.
+            Immerse yourself in the world of premium Moringa products, crafted
+            with care for your health and happiness.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h5 className="font-bold bg-[#0D1F12] text-[#8ED116] px-4 py-2.5 rounded-xl text-base sm:text-lg">
+            Meticulous Moringa Leaf Quality
+          </h5>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Origin and Source:
+              </span>{" "}
+              Our Moringa leaves hail from carefully selected geographic regions
+              known for their optimal climate conditions. Local farmers
+              collaborate to cultivate every leaf with respect for the
+              environment.
             </p>
-          </div>
-          <div className="lg:w-1/2">
-            <h2 className="text-xl font-semibold mt-10 uppercase">
-              Our documents:
-            </h2>
-            <div className="flex gap-5 mt-10 overflow-x-scroll">
-              <img src={img} alt="" />
-              <img src={img2} alt="" />
-            </div>
-            <p className="mt-5 text-center font-semibold">
-              Scroll left or Right
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Sustainable Cultivation Practices:
+              </span>{" "}
+              Embracing sustainable and organic farming, we prioritize soil
+              health and avoid pesticides. Our approach yields leaves of
+              unparalleled quality while nurturing our ecosystem.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Leaf Selection with Precision:
+              </span>{" "}
+              Each leaf undergoes rigorous selection, ensuring only the
+              freshest, vibrant, and unblemished ones are chosen. This preserves
+              the essence of Moringa's nutritional value.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Harvesting at its Peak:
+              </span>{" "}
+              Our leaves are meticulously hand-picked to ensure peak freshness
+              and nutritional richness. This hands-on approach maintains the
+              essence of Moringa's benefits.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Meticulous Cleaning and Washing:
+              </span>{" "}
+              Before processing, our leaves are cleaned and washed meticulously
+              to remove impurities. This ensures the final product is pure and
+              free from unwanted elements.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Optimized Drying Technique:
+              </span>{" "}
+              We use methods specially designed to preserve nutritional content,
+              from sun-drying to proprietary techniques. Our Moringa leaves
+              retain their potency and benefits.
             </p>
           </div>
         </div>
+
+        <div className="space-y-4">
+          <h5 className="font-bold bg-[#0D1F12] text-[#8ED116] px-4 py-2.5 rounded-xl text-base sm:text-lg">
+            Elevating Moringa Leaf Powder Quality:
+          </h5>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Processing Perfection:
+              </span>{" "}
+              The transformation from leaves to powder is a journey of
+              precision. Leaves are dried to perfection, resulting in finely
+              textured Moringa leaf powder.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Nutritional Richness:
+              </span>{" "}
+              Our Moringa leaf powder boasts an exceptional nutritional profile,
+              abundant in essential vitamins, minerals, antioxidants, and
+              bioactive compounds. Embrace the power of nature's nourishment.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Nature's Signature:
+              </span>{" "}
+              Color, Aroma, and Flavor: Experience the vibrancy of our Moringa
+              leaf powder – from its lively green hue to its fresh aroma and
+              mild flavor. It's a testament to nature's authenticity.
+            </p>
+            <p className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-600 text-sm sm:text-base">
+              <span className="font-bold text-slate-900">
+                Nature's Signature:
+              </span>{" "}
+              Color, Aroma, and Flavor: Experience the vibrancy of our Moringa
+              leaf powder – from its lively green hue to its fresh aroma and
+              mild flavor. It's a testament to nature's authenticity.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h5 className="font-bold bg-[#0D1F12] text-[#8ED116] px-4 py-2.5 rounded-xl text-base sm:text-lg">
+            Quality beyond Compromise:
+          </h5>
+          <p className="text-slate-600 leading-relaxed max-w-[78ch]">
+            <span className="font-bold text-slate-900">
+              Assured Quality and Testing:
+            </span>{" "}
+            Throughout production, our Moringa leaf powder undergoes rigorous
+            quality testing.
+          </p>
+          <p className="text-slate-600 leading-relaxed max-w-[78ch]">
+            <span className="font-bold text-slate-900">
+              Certifications and Compliance:
+            </span>{" "}
+            Our Moringa leaf powder is tested and certified by BCSIR
+            Laboratories, Dhaka. The process of Good Agricultural Practice (GAP)
+            certification for the entire journey is underway.
+            <br />
+            Elevate your well-being with Home Grow – where quality, purity, and
+            nature's essence converge.
+          </p>
+        </div>
       </div>
-    </div>
+
+      {/* Nutritional Table & Lab Documents */}
+      <div className="heavy-section-deferred grid lg:grid-cols-12 gap-10 items-start">
+        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+          <h2
+            id="moringa-nutrition-caption"
+            className="text-xl sm:text-2xl font-bold text-slate-900 mb-6"
+          >
+            Nutritional Value in every{" "}
+            <span className="text-[#71B002]">100 grams</span> of Moringa Leaf
+            and Leaf Powder:
+          </h2>
+
+          <div
+            tabIndex="0"
+            role="region"
+            aria-labelledby="moringa-nutrition-caption"
+            className="responsive-table-wrapper rounded-2xl border border-slate-200"
+          >
+            <table className="text-left text-sm sm:text-base">
+              <thead className="bg-[#0D1F12] text-white">
+                <tr>
+                  <th className="py-3.5 px-4 font-bold">#</th>
+                  <th className="py-3.5 px-4 font-bold">Nutrients</th>
+                  <th className="py-3.5 px-4 font-bold">Dried Leaves</th>
+                  <th className="py-3.5 px-4 font-bold">Leaves Powder</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {nutrients.map((n, i) => (
+                  <tr
+                    key={n.Nutrients}
+                    className="even:bg-slate-50/70 hover:bg-[#71B002]/5 transition-colors"
+                  >
+                    <th className="py-3 px-4 font-bold text-slate-700 bg-white">
+                      {i + 1}
+                    </th>
+                    <td className="py-3 px-4 font-semibold text-slate-900">
+                      {n.Nutrients}
+                    </td>
+                    <td className="py-3 px-4 text-slate-600">
+                      {n.DriedLeaves}
+                    </td>
+                    <td className="py-3 px-4 font-medium text-[#528200]">
+                      {n.LeavesPowder}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-xs sm:text-sm text-slate-500 text-center italic">
+            Source: Moringa oleifera: A review on nutritive importance and its
+            medicinal application: sciencedirect.com
+          </p>
+        </div>
+
+        {/* Documents Section */}
+        <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 uppercase mb-6">
+            Our documents:
+          </h2>
+          <PhotoProvider>
+            <div className="flex gap-5 overflow-x-auto pb-4 snap-x">
+              <PhotoView src={img}>
+                <img
+                  src={img}
+                  alt="Certification Document 1"
+                  loading="lazy"
+                  className="max-h-96 w-auto rounded-2xl border border-slate-200 shadow-sm cursor-pointer snap-center shrink-0"
+                />
+              </PhotoView>
+              <PhotoView src={img2}>
+                <img
+                  src={img2}
+                  alt="Certification Document 2"
+                  loading="lazy"
+                  className="max-h-96 w-auto rounded-2xl border border-slate-200 shadow-sm cursor-pointer snap-center shrink-0"
+                />
+              </PhotoView>
+            </div>
+          </PhotoProvider>
+          <p className="mt-3 text-center text-sm font-semibold text-slate-500">
+            Scroll left or Right (Click to zoom)
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
